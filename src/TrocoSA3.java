@@ -18,10 +18,10 @@ public class TrocoSA3 {
         System.out.println("Troco: R$ " + String.format("%.2f", troco));
 
         // Calcula o menor número de notas e moedas para o troco
-        int[] notas = {200, 100, 50, 20, 10, 5, 2}; // Incluindo a nota de R$ 200
-        int[] moedas = {100, 50, 25, 10, 5, 1}; // em centavos
+        int[] notas = {200, 100, 50, 20, 10, 5, 2}; // notas
+        int[] moedas = {100, 50, 25, 10, 5, 1}; // moedas/centavos (Incluindo a moeda de R$ 1,00 "100 centavos")
 
-        troco = Math.round(troco * 100); // arredondar para evitar imprecisão com centavos
+        troco = Math.round(troco * 100); // arredondar
         int trocoInt = (int) troco;
 
         System.out.println("Notas e Moedas para troco:");

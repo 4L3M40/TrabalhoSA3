@@ -13,18 +13,31 @@ public class TrocoSA3 {
         System.out.println("Valor Recebido:");
         double valorRecebido = scanner.nextDouble();
 
+        // Validação de entrada
+        if (valorRecebido < valorTotal) {
+            System.out.println("Erro: O valor recebido não pode ser menor que o valor total.");
+            return;
+        }
+
         // Calcula o troco
         double troco = valorRecebido - valorTotal;
         System.out.println("Troco: R$ " + String.format("%.2f", troco));
 
-        // Calcula o menor número de notas e moedas para o troco
-        int[] notas = {200, 100, 50, 20, 10, 5, 2}; // notas
-        int[] moedas = {100, 50, 25, 10, 5, 1}; // moedas/centavos (Incluindo a moeda de R$ 1,00 "100 centavos")
+        // Exibe as notas e moedas para o troco
+        calcularNotasEMoedas(troco);
 
-        troco = Math.round(troco * 100); // arredondar
-        int trocoInt = (int) troco;
+        scanner.close();
+    }
+
+    private static void calcularNotasEMoedas(double troco) {
+        int[] notas = {200, 100, 50, 20, 10, 5, 2}; // notas
+        int[] moedas = {100, 50, 25, 10, 5, 1}; // moedas em centavos
+
+        int trocoInt = (int) Math.round(troco * 100); // Converte para centavos
 
         System.out.println("Notas e Moedas para troco:");
+
+        // Calcula notas
         for (int nota : notas) {
             int quantidade = trocoInt / (nota * 100);
             if (quantidade > 0) {
@@ -33,6 +46,7 @@ public class TrocoSA3 {
             }
         }
 
+        // Calcula moedas
         for (int moeda : moedas) {
             int quantidade = trocoInt / moeda;
             if (quantidade > 0) {
@@ -41,7 +55,5 @@ public class TrocoSA3 {
                 trocoInt %= moeda;
             }
         }
-
-        scanner.close();
     }
 }
